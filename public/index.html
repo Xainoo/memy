@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Losowy Memek</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Dzib Z jedy</h1>
+    <button id="getMeme">Wziąć Losowowosć Obraz Grafika Satyra Żart Meme</button>
+    <div id="memeContainer"></div>
+    <div style="height: 800px;"></div>
+    <div id="easterEggInfo" style="opacity:0.5; color:#ccc; font-size:1.1em; padding:40px 0 60px 0; text-align:center;">
+        <hr style="margin-bottom:20px;">
+        <div style="max-width:600px; margin:auto;">
+            <strong>Easter Egg:</strong> jest ukryta jajko wielkanocne na stronie<br>
+            Jeśli poklikasz za dużo razy w wyszukanie żart satyra meme coś się stanie!
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        document.getElementById('getMeme').onclick = async function() {
+            clickCount++;
+            const memeContainer = document.getElementById('memeContainer');
+            if (clickCount >= 20) {
+                memeContainer.innerHTML = `<div style='font-size:1.5em; color:#ff9800; padding:30px;'>🎉 wystarczy tego jebania żydów, czarnuchów i kobiet pora spać 😄</div>`;
+                return;
+            }
+            const res = await fetch('/random-meme');
+            const data = await res.json();
+            memeContainer.innerHTML = `<img src="/${data.meme}" alt="Random Meme" style="max-width:400px;">`;
+        }
+    </script>
+</body>
+</html>
